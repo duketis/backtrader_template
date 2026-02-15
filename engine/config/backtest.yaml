@@ -1,0 +1,91 @@
+# ==============================================================================
+# Backtest Engine - Configuration
+# ==============================================================================
+# All configurable parameters for backtesting. No magic numbers in code.
+# Adjust these values and re-run — the engine reads everything from here.
+# ==============================================================================
+
+# --- Account Settings ---------------------------------------------------------
+account:
+  initial_balance: 100000        # Starting account balance
+  currency: USD                  # Account currency
+  leverage: 50                   # Broker leverage (e.g. 50 = 50:1, 500 = 500:1)
+
+# --- Position Sizing ----------------------------------------------------------
+# method options:
+#   - fixed_lot:       Use a fixed lot size for every trade
+#   - fixed_risk:      Risk a fixed dollar amount per trade (SL-based sizing)
+#   - percent_equity:  Risk a percentage of current equity per trade
+#   - fixed_dollar:    Allocate a fixed dollar amount per trade (notional)
+position_sizing:
+  method: fixed_risk
+  fixed_lot_size: 1.0            # Used when method = fixed_lot
+  risk_per_trade_dollars: 1000   # Used when method = fixed_risk
+  risk_per_trade_percent: 1.0    # Used when method = percent_equity
+  fixed_dollar_amount: 5000      # Used when method = fixed_dollar
+
+# --- Risk Management ----------------------------------------------------------
+risk_management:
+  max_positions: 1               # Maximum concurrent open positions
+  max_daily_loss_dollars: 5000   # Daily loss limit in dollars (0 = disabled)
+  max_daily_loss_percent: 5.0    # Daily loss limit as % of starting equity (0 = disabled)
+
+# --- Trading Costs ------------------------------------------------------------
+# spread_points: in index points (same unit as price data)
+# Dukascopy USATECH.IDX/USD average spreads (in points):
+#   US session:  ~1.14
+#   Europe:      ~1.14
+#   Asia:        ~1.12
+#   Min:         ~0.50
+#   Max:         ~18.50
+costs:
+  spread_points: 1.14            # Applied as half-spread on each side of fill
+  commission_per_trade: 0.0      # Fixed commission per trade (per side)
+  commission_per_lot: 0.0        # Commission per lot traded (per side)
+  slippage_points: 0.0           # Additional slippage beyond spread model
+
+# --- Session Filter -----------------------------------------------------------
+# Defines the active trading window. All times in the session timezone.
+# Trades will only be taken during this window.
+# Data outside this window is still loaded for indicator calculation.
+session:
+  timezone: America/New_York
+  start_time: "08:00"            # Pre-market open (8:00 AM ET)
+  end_time: "16:30"              # Post-close (4:30 PM ET)
+  dst_aware: true                # Automatically adjust UTC offsets for DST
+
+# --- Data Paths ---------------------------------------------------------------
+data:
+  instrument: USATECHIDXUSD
+  tick_data_dir: ../data/usatech               # Raw tick zip files
+  parquet_dir: ../data/usatech_parquet          # Preprocessed parquet files
+  timeframes:                    # Timeframes to generate from tick data
+    - 1min
+    - 5min
+    - 1hour
+    - 4hour
+
+# --- Backtest Period ----------------------------------------------------------
+backtest:
+  start_date: "2020-01-01"
+  end_date: "2025-09-15"
+
+# --- Visualization ------------------------------------------------------------
+visualization:
+  enabled: true
+  output_dir: outputs/runs
+  plot_format: html              # html (plotly interactive) or png (static)
+  timeframes:                    # Timeframes to plot for each trade
+    - 1min
+    - 5min
+    - 1hour
+    - 4hour
+  candles_before_trade: 50       # Context candles before trade entry
+  candles_after_trade: 20        # Context candles after trade exit
+
+# --- Logging ------------------------------------------------------------------
+logging:
+  level: INFO                    # DEBUG, INFO, WARNING, ERROR
+  log_dir: logs
+  console: true                  # Also print to stdout
+  structured: true               # JSON-formatted log lines

@@ -1,0 +1,40 @@
+# Data directories - too large for GitHub
+quantconnect_data/
+dukascopy_data/
+
+# Python virtual environments
+dukascopy_env/
+my_qc_env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Log files
+*.log
+
+# Analysis output files
+*.txt
+distribution.txt
+distrubtion.txt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp

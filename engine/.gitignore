@@ -1,0 +1,29 @@
+# Engine outputs
+outputs/
+logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Data (parquet files are generated, don't commit)
+# Raw tick data is in ../data/ outside this project
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Virtual env
+venv/
+env/

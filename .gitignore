@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtual environments
+venv/
+env/
+backtrader_env/
+dukascopy_env/
+my_qc_env/
+
+# Data (too large for git — download separately)
+data/usatech/
+data/usatech_parquet/
+*.parquet
+*.zip
+
+# Engine outputs
+engine/outputs/
+engine/logs/
+
+# Scraper outputs
+scraping_data_bots/dukascopy_data/
+scraping_data_bots/quantconnect_data/
+scraping_data_bots/*.log
+scraping_data_bots/*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pytest
+.pytest_cache/

@@ -1,0 +1,19 @@
+# Backtest Engine - Requirements
+# Pin versions for reproducibility
+
+backtrader==1.9.78.123
+pandas>=2.0.0
+numpy>=1.24.0
+pyarrow>=14.0.0              # Parquet read/write
+pyyaml>=6.0                  # YAML config parsing
+plotly>=5.18.0               # Interactive trade visualization
+pytz>=2024.1                 # Timezone handling
+python-dateutil>=2.8.2       # Date utilities
+kaleido>=0.2.1               # Plotly static image export
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Development
+ipython>=8.0.0               # Nice REPL for debugging
