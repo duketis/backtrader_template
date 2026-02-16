@@ -183,6 +183,7 @@ def _build_html(result: BacktestResult) -> str:
                         <th>Costs</th>
                         <th>R:R</th>
                         <th>Duration</th>
+                        <th>Setup</th>
                         <th>Result</th>
                     </tr>
                 </thead>
@@ -315,6 +316,8 @@ def _build_trade_rows(result: BacktestResult) -> str:
         result_str = "✅ WIN" if t.is_winner else "❌ LOSS"
         result_class = "win-badge" if t.is_winner else "loss-badge"
 
+        setup_str = t.metadata.get("confluence", "—")
+
         rows.append(f"""<tr>
             <td>{t.trade_id}</td>
             <td class="{dir_class}">{t.direction.value.upper()}</td>
@@ -330,6 +333,7 @@ def _build_trade_rows(result: BacktestResult) -> str:
             <td>{_fmt_currency(t.total_costs)}</td>
             <td>{rr_str}</td>
             <td>{dur_str}</td>
+            <td>{setup_str}</td>
             <td><span class="{result_class}">{result_str}</span></td>
         </tr>""")
 

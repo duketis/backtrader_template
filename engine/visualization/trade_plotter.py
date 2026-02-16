@@ -100,6 +100,8 @@ class TradePlotter:
         pnl_str = f"${trade.net_pnl:+,.2f}"
         result_emoji = "✅" if trade.is_winner else "❌"
         size_str = f"{trade.size:.2f}" if trade.size >= 1 else f"{trade.size:.4f}"
+        confluence_str = trade.metadata.get("confluence", "")
+        setup_part = f"  |  Setup: {confluence_str}" if confluence_str else ""
 
         fig.update_layout(
             title=dict(
@@ -109,6 +111,7 @@ class TradePlotter:
                     f"Size: {size_str}  |  "
                     f"Entry: {trade.entry_price:,.2f}  →  "
                     f"Exit: {trade.exit_price:,.2f}"
+                    f"{setup_part}"
                 ),
                 font=dict(size=15, color="white"),
                 x=0.01, xanchor="left",

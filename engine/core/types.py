@@ -142,6 +142,7 @@ class TradeRecord:
     entry_reason: str = ""          # Why the trade was entered
     exit_reason: str = ""           # Why the trade was exited
     notes: str = ""                 # Additional notes
+    metadata: dict = field(default_factory=dict)  # Strategy-specific data (e.g. {"confluence": "FVG"})
 
     @property
     def is_winner(self) -> bool:
